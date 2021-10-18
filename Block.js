@@ -6,12 +6,14 @@ class Block{
         }
         
         //Agrega una propiedad de "visibilidad"
+        this.visibility = 255;
         
         this.body = Bodies.rectangle(x, y, width, height, options);
         this.width = width;
         this.height = height;
                 
         //Agrega la imagen block.png
+        this.image = loadImage("block.png");
 
         World.add(world, this.body);
         
@@ -21,16 +23,26 @@ class Block{
         console.log(this.body.speed);
         var pos= this.body.position;
         
-        //Escribe el código para mostrar las cajas, solo cuando su velocidad esté por
-        //debajo del umbral de 3.
-        //escribir la condición de eliminación para las cajas, cuando la
-        //velocidad es mayor que el umbral
-
-        //usar tint para hacer que los bloques se desvanezcan
-        //reducir la visibilidad por 5
-
-        //escribir las condiciones push() y pop()
-
+        if(this.body.speed < 3){
+            var angle = this.body.angle;
+           push();
+           translate(pos.x, pos.y);
+           rotate(angle);
+           imageMode(CENTER);
+           image(this.image, 0, 0, this.width, this.height);
+           pop();
+          }
+          else{
+            World.remove(world,this.body);
+      
+            push();
+      
+            this.visibility = this.visibility -5;
+      
+            tint(255,this.visibility);
+            image(this.image,this.body.position.x,this.body.position.y,this.width,this.height);
+            pop();
+          }
 
     }
 }

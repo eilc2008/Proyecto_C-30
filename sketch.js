@@ -124,5 +124,12 @@ function mouseReleased(){
   slingShot.fly();
 }
 // crear el evento keyPressed
+function keyPressed(){
+  if(keyCode === 32){
+    slingShot.attach(this.polygon);
+
+    Matter.Body.setPosition(this.polygon,{x:50,y:200})
+  }
+}
 //Usamos el valor de keyCode (Valor ASCII), para unir el polígono (bodyA) de
 //nuevo al cabestrillo Clase

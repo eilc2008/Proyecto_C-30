@@ -29,5 +29,9 @@ class Slingshot{
         line(pointA.x, pointA.y, pointB.x, pointB.y);
         }
     }
+
+    attach(body){
+        this.sling.bodyA = body;
+    }
     
 }
